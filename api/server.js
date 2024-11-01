@@ -34,24 +34,6 @@ db.connect(err => {
   console.log('MySQL Connected...');
 });
 
-// Secret key for JWT
-// const JWT_SECRET = process.env.JWT_SECRET;
-
-// Helper function to authenticate user by token
-/* const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization'];
-
-  if (!token) return res.sendStatus(403);
-
-  jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}; */
-
-// Routes
-
 // 1. Register User
 app.post('/api/register', (req, res) => {
     const { email, username, password } = req.body;
@@ -156,7 +138,7 @@ app.get('/api/transactions', (req, res) => {
 
 
 // 5. Get User Balance
-app.get('/api/balance', (req, res) => {
+/*app.get('/api/balance', (req, res) => {
   const sqlIncome = 'SELECT SUM(amount) as totalIncome FROM transactions WHERE type = "income"';
   const sqlExpense = 'SELECT SUM(amount) as totalExpense FROM transactions WHERE type = "expense"';
 
@@ -174,7 +156,7 @@ app.get('/api/balance', (req, res) => {
       });
     });
   });
-});
+}); */
 
 // Server listening
 const PORT = process.env.PORT || 3000;

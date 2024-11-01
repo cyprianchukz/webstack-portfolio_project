@@ -18,13 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('Failed to fetch balance');
             }
-            
+
             const result = await response.json();
 
             // Fallback to 0 if totalIncome or totalExpense is null
             const totalIncome = result.totalIncome ? parseFloat(result.totalIncome) : 0;
-            const totalExpense = result.totalExpense ? parseFloat(result.totalExpense) : 0;                const balance = result.balance ? parseFloat(result.balance) : 0;
-    
+            const totalExpense = result.totalExpense ? parseFloat(result.totalExpense) : 0;
+            const balance = result.balance ? parseFloat(result.balance) : 0;
+
             balanceDisplay.textContent = `$${balance.toFixed(2)}`;
             incomeDisplay.textContent = `$${totalIncome.toFixed(2)}`;
             expenseDisplay.textContent = `$${totalExpense.toFixed(2)}`;
@@ -33,9 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching balance:', error);
         }
     }
-    
-    fetchBalance();  // Fetch balance when the page loads
-    
 
     // Fetch and display transactions
     async function fetchTransactions() {
@@ -102,5 +100,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch of balance and transactions
     fetchBalance();
-    
+    fetchTransactions();
 });
